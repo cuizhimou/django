@@ -1,5 +1,4 @@
 	{%extends 'base_foot.html'%}
-
 	{%block head%}
 	<script type="text/javascript" src="/static/js/register.js"></script>
 	{%endblock head%}
@@ -14,10 +13,10 @@
 		<div class="r_con fr">
 			<div class="reg_title clearfix">
 				<h1>用户注册</h1>
-				<a href="#">登录</a>
+				<a href="/user/login/">登录</a>
 			</div>
 			<div class="reg_form clearfix">
-				<form action="/user/register_handle/" method="post">
+				<form action="/user/register_handle/" method="post" id="reg_form">
 					{%csrf_token%}
 				<ul>
 					<li>
@@ -46,7 +45,7 @@
 						<span class="error_tip2">提示信息</span>
 					</li>
 					<li class="reg_sub">
-						<input type="submit" value="注 册" name="">
+						<input type="submit" value="注 册">
 					</li>
 				</ul>				
 				</form>
@@ -55,5 +54,6 @@
 		</div>
 
 	</div>
+
 	{%endblock body%}
 
