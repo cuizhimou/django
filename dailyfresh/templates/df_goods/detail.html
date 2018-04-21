@@ -73,5 +73,35 @@
 			</div>
 
 		</div>
-	</div>
+<div class="add_jump"></div>
+	<script type="text/javascript">
+		var $add_x = $('#add_cart').offset().top;
+		var $add_y = $('#add_cart').offset().left;
+
+		var $to_x = $('#show_count').offset().top;
+		var $to_y = $('#show_count').offset().left;
+
+		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
+		$('#add_cart').click(function(){
+		    //判断是否登录，若未登录则先提示先登录
+			if($('.login_btn').text().indexOf('登录')>=0){
+			    alert('请先登录再购买');
+			    location.href='/user/login/';
+			    return;
+			}
+			//动画
+			$(".add_jump").stop().animate({
+				'left': $to_y+7,
+				'top': $to_x+7},
+				"fast", function() {
+					$(".add_jump").fadeOut('fast',function(){});
+			});
+			//异步
+			num=parseInt($('.num_show').val());
+			$.get('/cart/add{{g.id}}_'+num+'/',function (data) {
+				$('#show_count').text(data.count)
+            });
+		});
+	</script>
+
 {%endblock detail2%}
